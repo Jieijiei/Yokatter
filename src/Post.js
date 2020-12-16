@@ -13,7 +13,7 @@ const goodcount = (e, id, favoritecount) => {
 };
 
 const Post = forwardRef(
-    ({ id, displayName, username, verified, text, image, avatar, favoritecount }, ref) => {
+    ({ id, displayName, username, verified, text, image, avatar, favoritecount, time }, ref) => {
     return (
         <div className="post" ref={ref}>
           <div className="post__avatar">
@@ -26,6 +26,7 @@ const Post = forwardRef(
                         {displayName}{" "}
                         <span className="post__headerSpecial">
                             {verified && <VerifiedUserIcon className="post__badge"></VerifiedUserIcon>}
+                            <h8>{time}</h8>
                         </span>
                     </h3>
                 </div>

@@ -13,6 +13,7 @@ function Feed(props) {
             setPosts(snapshot.docs.map((doc) => doc))
         ))
     }, []);
+    const N = posts.length;
 
     return (
         <div className="feed">
@@ -33,6 +34,7 @@ function Feed(props) {
                     avatar={post.data().avatar}
                     image={post.data().image}
                     favoritecount={post.data().favoritecount}
+                    time={post.data().time}
             />
             ))}
             </FlipMove>
