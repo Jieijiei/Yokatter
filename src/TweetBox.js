@@ -20,17 +20,19 @@ function TweetBox(props) {
     const sendTweet = (e) => {
         e.preventDefault();
 
-        db.collection("posts").doc((N).toString()).set({
-            displayName: props.username,
-            username: 'cleverqazi',
-            verified: true,
-            text: tweetMessage,
-            image: tweetImage,
-            avatar:
-                "https://cdn.discordapp.com/attachments/646896760555307009/781112162151694346/Screen_Shot_2020-11-25_at_20.00.22.png",
-            favoritecount: 0,
-            time: nowTime.getFullYear() + "/" + nowTime.getMonth() + "/" + nowTime.getDate() + " " + nowTime.getHours() + ":" + nowTime.getMinutes() + "'" + nowTime.getSeconds()
-        });
+        if (tweetMessage.length !== 0) {
+            db.collection("posts").doc((N).toString()).set({
+                displayName: props.username,
+                username: 'cleverqazi',
+                verified: true,
+                text: tweetMessage,
+                image: tweetImage,
+                avatar:
+                    "https://cdn.discordapp.com/attachments/646896760555307009/781112162151694346/Screen_Shot_2020-11-25_at_20.00.22.png",
+                favoritecount: 0,
+                time: nowTime.getFullYear() + "/" + nowTime.getMonth() + "/" + nowTime.getDate() + " " + nowTime.getHours() + ":" + nowTime.getMinutes() + "'" + nowTime.getSeconds()
+            });
+        }
 
         setTweetMessage("");
         setTweetImage("");
