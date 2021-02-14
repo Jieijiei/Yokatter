@@ -3,6 +3,7 @@ import "./Post.css";
 import { Avatar, Button } from "@material-ui/core";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import db from './firebase';
 
@@ -10,6 +11,10 @@ const goodcount = (e, id, favoritecount) => {
     e.preventDefault();
 
     db.collection('posts').doc(id).update({ favoritecount: favoritecount += 1})
+};
+
+const deletedPost = (id) => {
+    db.collection('posts').doc(id).delete()
 };
 
 const Post = forwardRef(
@@ -43,6 +48,12 @@ const Post = forwardRef(
                 type="submit"
             >
                 よかったね<FavoriteBorderIcon fontSize="small" />{favoritecount}
+            </Button>
+            <Button
+                onClick={(e) => deletedPost(id)}
+                type="submit"
+            >
+                削除<DeleteIcon fontSize="small" />
             </Button>
             </div>
         </div>
