@@ -8,14 +8,21 @@ import FlipMove from "react-flip-move";
 
 
   function Widgets() {
-    const [posts, setPosts] = useState([]);
+    var [posts, setPosts] = useState([]);
 
     useEffect(() => {
         db.collection('posts').onSnapshot(snapshot => (
             setPosts(snapshot.docs.map((doc) => doc))
         ))
     }, []);
-    const N = posts.length;
+    
+    posts.sort((a, b)=> {
+        if (a.data().favboritecount < b.data().favoritecount) return 1;
+        if (a.data().favoritecount > b.data().favoritecount) return -1;
+        return 0;
+    });
+    // top5
+    posts = posts.slice(0, 5)
 
     return (
         <div className="widgets">
@@ -25,7 +32,7 @@ import FlipMove from "react-flip-move";
             </div>
 
             <div className="widgets__widgetContainer">
-            <h2>よかったねランキング</h2>
+            <h2>よかったねTOP5</h2>
 
             <FlipMove>
             {posts.map((post) => (
