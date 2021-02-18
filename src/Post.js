@@ -17,8 +17,25 @@ const deletedPost = (id) => {
     db.collection('posts').doc(id).delete()
 };
 
+function Checkdeletedpost(postdata){
+    console.log(postdata)
+    if (postdata.displayName === postdata.nowuser){
+        return(
+            <Button
+                onClick={(e) => deletedPost(postdata.id)}
+                type="submit"
+            >
+                削除<DeleteIcon fontSize="small" />
+            </Button>
+        )
+    }
+    else{
+        return null
+    }
+};
+
 const Post = forwardRef(
-    ({ id, displayName, username, verified, text, image, avatar, favoritecount, time }, ref) => {
+    ({ id, displayName, username, verified, text, image, avatar, favoritecount, time, nowuser }, ref) => {
     return (
         <div className="post" ref={ref}>
           <div className="post__avatar">
@@ -49,12 +66,7 @@ const Post = forwardRef(
             >
                 よかったね<FavoriteBorderIcon fontSize="small" />{favoritecount}
             </Button>
-            <Button
-                onClick={(e) => deletedPost(id)}
-                type="submit"
-            >
-                削除<DeleteIcon fontSize="small" />
-            </Button>
+            <Checkdeletedpost id={id} displayName={displayName} nowuser={nowuser}/>
             </div>
         </div>
     );

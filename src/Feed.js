@@ -13,6 +13,11 @@ function Feed(props) {
             setPosts(snapshot.docs.map((doc) => doc))
         ))
     }, []);
+    posts.sort((a, b)=> {
+        if (a.data().time < b.data().time) return 1;
+        if (a.data().time > b.data().time) return -1;
+        return 0;
+    });
     const N = posts.length;
 
     return (
@@ -35,6 +40,7 @@ function Feed(props) {
                     image={post.data().image}
                     favoritecount={post.data().favoritecount}
                     time={post.data().time}
+                    nowuser={props.username}
             />
             ))}
             </FlipMove>

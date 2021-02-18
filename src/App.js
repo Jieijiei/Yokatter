@@ -40,7 +40,7 @@ function Home(props) {
       <div className="home">
       <h1>Yokatter</h1>
       <p>あなたは, @{props.username}です！</p>
-      <button onClick={() => history.push('/user')}>usernameの変更</button>
+      <button onClick={() => history.push('/user')}>名前の変更</button>
       </div>
       <div className="app">
       <Sidebar />

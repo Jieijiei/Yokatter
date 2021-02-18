@@ -14,14 +14,12 @@ function TweetBox(props) {
             setPosts(snapshot.docs.map((doc) => doc))
         ))
     }, []);
-    var N = 9999999;
-    N -= posts.length;
 
     const sendTweet = (e) => {
         e.preventDefault();
 
         if (tweetMessage.length !== 0) {
-            db.collection("posts").doc((N).toString()).set({
+            db.collection("posts").add({
                 displayName: props.username,
                 username: 'cleverqazi',
                 verified: true,
@@ -30,7 +28,7 @@ function TweetBox(props) {
                 avatar:
                     "https://cdn.discordapp.com/attachments/646896760555307009/781112162151694346/Screen_Shot_2020-11-25_at_20.00.22.png",
                 favoritecount: 0,
-                time: nowTime.getFullYear() + "/" + nowTime.getMonth() + "/" + nowTime.getDate() + " " + nowTime.getHours() + ":" + nowTime.getMinutes() + "'" + nowTime.getSeconds()
+                time: nowTime.getFullYear() + "/" + (nowTime.getMonth() + 1) + "/" + nowTime.getDate() + " " + nowTime.getHours() + ":" + nowTime.getMinutes() + "''" + nowTime.getSeconds()
             });
         }
 
