@@ -26,7 +26,7 @@ function Feed(props) {
                 <h2>Home</h2>
             </div>
 
-            <TweetBox username={props.username} />
+            <TweetBox username={props.username} avatar={props.avatar}/>
 
             <FlipMove>
             {posts.map((post) => (
