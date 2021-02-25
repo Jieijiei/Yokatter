@@ -39,7 +39,7 @@ const Post = forwardRef(
     return (
         <div className="post" ref={ref}>
           <div className="post__avatar">
-            <Avatar src="https://cdn.discordapp.com/attachments/646896760555307009/781112162151694346/Screen_Shot_2020-11-25_at_20.00.22.png"/>
+            <Avatar src={avatar}/>
         </div>
         <div className="post__body">
             <div className="post__header">

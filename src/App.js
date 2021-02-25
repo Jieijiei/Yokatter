@@ -13,19 +13,23 @@ import {
 
 function App() {
   const [username, setUsername] = useState();
+  const [avatar, setAvatar] = useState();
   function handleInputUsername(text) {
     setUsername(text);
+  }
+  function handleInputAvatar(text) {
+    setAvatar(text);
   }
   return (
     <Router>
       <div>
         <Switch>
           <Route path="/user">
-            <User handleInputUsername={(e) => handleInputUsername(e)} />
+            <User handleInputUsername={(e) => handleInputUsername(e)} handleInputAvatar={(e) => handleInputAvatar(e)} />
           </Route>
           <Route path="/" render={props => !username
           ? (<Redirect to="/user" />)
-          : (<Home username={username} />)}>
+          : (<Home username={username} avatar={avatar} />)}>
           </Route>
         </Switch>
       </div>
@@ -44,7 +48,7 @@ function Home(props) {
       </div>
       <div className="app">
       <Sidebar />
-      <Feed username={props.username} />
+      <Feed username={props.username} avatar={props.avatar} />
       <Widgets />
       </div>
     </div>
@@ -57,10 +61,11 @@ function User(props) {
     history.push('/');
   }
   return (
-    <div>
-      <h2>あなたのYokatterユーザーネームを教えて下さい！</h2>
+    <div class = "userinput">
+      <h2 class >Yokatterユーザー設定</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={(e) => props.handleInputUsername(e.target.value)}></input>
+        <input type="text" onChange={(e) => props.handleInputUsername(e.target.value)} placeholder = "ユーザーネーム"></input>
+        <input type="text" onChange={(e) => props.handleInputAvatar(e.target.value)} placeholder = "アイコン画像(URL)"></input>
         <input type="submit" value="決定"></input>
       </form>
     </div>

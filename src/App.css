@@ -15,3 +15,13 @@ body {
 .home {
   text-align: center;
 }
+
+.userinput > form > input{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.userinput > h2{
+  text-align: center
+}

@@ -26,7 +26,7 @@ function TweetBox(props) {
                 text: tweetMessage,
                 image: tweetImage,
                 avatar:
-                    "https://cdn.discordapp.com/attachments/646896760555307009/781112162151694346/Screen_Shot_2020-11-25_at_20.00.22.png",
+                    props.avatar,
                 favoritecount: 0,
                 time: nowTime.getFullYear() + "/" + (nowTime.getMonth() + 1) + "/" + nowTime.getDate() + " " + nowTime.getHours() + ":" + nowTime.getMinutes() + "''" + nowTime.getSeconds()
             });
@@ -40,7 +40,7 @@ function TweetBox(props) {
     <div className="tweetbox">
         <form>
             <div className="tweetBox__input">
-                <Avatar src="https://cdn.discordapp.com/attachments/646896760555307009/781112162151694346/Screen_Shot_2020-11-25_at_20.00.22.png"/>
+                <Avatar src={props.avatar}/>
                 <input
                 onChange={e => setTweetMessage(e.target.value)}
                 value={tweetMessage}
